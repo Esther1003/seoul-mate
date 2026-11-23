@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>首爾小旅行 1/12–1/16</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff3f8;--cd:#fff;--tx:#4a3340;--sub:#9a7f8c;--pk:#ff6fa8;--lv:#e9deff;--ln:#ffd3e4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241a21;--cd:#33252e;--tx:#fbeaf2;--sub:#c4a5b6;--pk:#ff8fbd;--lv:#4a3b6b;--ln:#4d3643}}
+:root[data-theme="dark"]{--bg:#241a21;--cd:#33252e;--tx:#fbeaf2;--sub:#c4a5b6;--pk:#ff8fbd;--lv:#4a3b6b;--ln:#4d3643}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.6 "Noto Sans TC",system-ui,sans-serif}
+header{text-align:center;padding:28px 16px 8px}
+h1{margin:0;font-size:26px;color:var(--pk)}
+header p{margin:4px 0;color:var(--sub)}
+#nav{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+#nav a{flex:none;background:var(--cd);border:1.5px solid var(--ln);border-radius:20px;padding:4px 12px;color:var(--tx);text-decoration:none;font-size:13px}
+main{max-width:640px;margin:0 auto;padding:0 14px 90px}
+h2{font-size:18px;margin:26px 0 10px;display:flex;justify-content:space-between;align-items:center}
+.c{background:var(--cd);border:1.5px solid var(--ln);border-radius:18px;padding:12px 14px;margin-bottom:10px;box-shadow:0 3px 10px rgba(255,111,168,.1)}
+.tm{background:var(--lv);border-radius:10px;padding:1px 9px;font-size:12px;margin-right:8px}
+.c p{margin:4px 0;color:var(--sub);font-size:14px}
+.lk{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.lk a,button{font:inherit;font-size:13px;border:0;border-radius:14px;padding:3px 11px;background:var(--pk);color:#fff;text-decoration:none;cursor:pointer}
+.lk a+a{background:#8f7be0}
+button.g{background:var(--lv);color:var(--tx)}
+#ed{position:fixed;right:14px;top:calc(env(safe-area-inset-top,0px) + 54px);z-index:6}
+#bar{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;justify-content:center;padding:10px 10px calc(10px + env(safe-area-inset-bottom,0px));background:var(--cd);border-top:1.5px solid var(--ln);z-index:9}
+dialog{border:2px solid var(--pk);border-radius:20px;background:var(--cd);color:var(--tx);width:min(92vw,420px)}
+dialog input,dialog textarea{display:block;width:100%;box-sizing:border-box;margin:8px 0;padding:8px;border:1.5px solid var(--ln);border-radius:10px;font:inherit;background:var(--bg);color:var(--tx)}
+#mapw{max-width:640px;margin:0 auto;padding:0 14px}#mp{width:100%;border:1.5px solid var(--ln);border-radius:16px;background:var(--cd)}#mp text{fill:var(--tx);font-size:9px}#mpi{background:var(--lv);border-radius:12px;padding:6px 10px;margin:6px 0;font-size:14px}#toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:6px 14px;border-radius:14px;z-index:20}
+</style></head>
+<body>
+<header><h1>🌸 首爾小旅行 🌸</h1><p>2027/1/12（二）– 1/16（六）· 5天4夜 · 弘大住宿</p><p style="font-size:13px">點 📍 直接開地圖，🔗 開預訂或搜尋頁</p></header>
+<div id="nav"></div>
+<button id="ed" class="g" data-a="ed" hidden>✏️ 編輯</button>
+<div id="mapw"><h2>🗺️ 周邊地圖與地鐵</h2><svg id="mp" viewBox="0 0 640 420"></svg><div id="mpi">👆 點地圖上的粉紅點，看店名與搭車方式</div><p style="font-size:12px;color:var(--sub);margin:4px 0">🟩2號線　🟦1號線　⭐住宿區　●推薦地點。這是示意圖，位置與出口為估計，請以 Naver／Kakao 地圖即時確認；公車號碼也請用地圖查即時路線。</p><div class="lk"><a href="https://www.google.com/search?q=首爾地鐵路線圖&tbm=isch" target="_blank" rel="noopener">🚇 完整地鐵路線圖</a><a href="https://map.naver.com/p/search/홍대입구역" target="_blank" rel="noopener">🗺️ Naver 弘大周邊</a></div></div>
+<main id="app"></main>
+<div id="bar" hidden><button class="g" data-a="ns">＋區塊</button><button class="g" data-a="ab">放棄</button><button data-a="sv">💾 儲存並發布</button></div>
+<dialog id="dg"><b id="dgt">編輯項目</b><input id="f_tm" placeholder="時間（選填）"><input id="f_t" placeholder="標題"><textarea id="f_d" rows="3" placeholder="說明"></textarea><input id="f_q" placeholder="地圖搜尋字：店名或地址（選填）"><input id="f_u" placeholder="自訂連結 https://…（選填）"><input id="f_r" placeholder="🚇 交通：地鐵線／出口／公車號碼（選填）"><input id="f_g" placeholder="地圖座標 緯度,經度（選填，如 37.5572,126.9245）"><button id="ok">確定</button> <button class="g" id="no">取消</button></dialog>
+<script id="d" type="application/json">{"tr":{"a1":"AREX普通列車（各站停）仁川機場→弘大入口站，約1小時；也有機場巴士6002往弘大／新村方向，但較慢","a2":"弘大入口站（2號線）8、9號出口一帶步行","a3":"弘大入口站3號出口，沿京義線森林路步行約10–15分","b1":"弘大入口站搭2號線往시청·성수方向到聖水站，約25–30分","b2":"聖水站→건대입구站（2號線，1站）","b3":"건대입구站5、6號出口（羊肉串街）","b4":"弘大入口站附近，請用地圖導航確認地址","c1":"集合點以訂單為準；弘益大學站＝弘大入口站（4號出口）","c3":"弘大入口站步行約10分","e1":"종로3가站（1、3、5號線）步行約3分；弘大入口站搭2號線到시청再換1號線","e2":"弘大入口站搭2號線到시청，換1號線到종각站，步行約5分","e3":"종로5가站（1號線）8號出口步行約3分","e4":"동대문역사문화공원站（2、4、5號線）1號出口；弘大入口站搭2號線約30分","e5":"종로5가站或동대문站（1號線）步行約5分","f2":"강남站（2號線）地下街直通；弘大入口站約40–45分","f3":"弘大入口站搭AREX到仁川機場（T1或T2依航空公司）","h1":"弘大入口站3號出口，沿京義線森林路步行約10–15分","h2":"合井站（2、6號線）步行約5–10分","h3":"弘大入口站3號出口步行約15分","h4":"合井站（2、6號線）或望遠站（6號線）步行約10分","h5":"望遠站（6號線）步行約5–10分","i1":"弘大入口搭2號線到시청，換1號線到종각站，步行約5分","i2":"弘大入口站步行約10分","i3":"신천站（2號線）4號出口","j1":"건대입구站5、6號出口（羊肉串街）","k1":"AREX、2號線、京義中央線交會，機場來回最方便"},"geo":{"b1":[37.5446,127.0557],"b2":[37.5404,127.069],"b3":[37.5405,127.0705],"b4":[37.5565,126.923],"e1":[37.574,126.991],"e2":[37.57,126.9835],"e3":[37.57,126.9998],"e4":[37.5671,127.0092],"e5":[37.5712,127.001],"f2":[37.4979,127.0276],"h1":[37.562,126.925],"h2":[37.553,126.918],"h3":[37.5635,126.925],"h4":[37.556,126.91],"h5":[37.556,126.9065],"i2":[37.5545,126.9235],"i3":[37.5116,127.0868],"j1":[37.5408,127.0705],"k1":[37.5572,126.9245]},"sec":[
+{"id":"d1","ic":"🛬","t":"Day 1 · 1/12 二 抵達弘大","it":[
+{"id":"a1","tm":"午後","t":"機場鐵路到弘大入口站","d":"約1小時；便利商店買T-money，先儲值2～3萬₩","q":"홍대입구역"},
+{"id":"a2","tm":"下午","t":"入住＋逛弘大購物街","d":"Olive Young先看價格不急著買","q":"홍대 올리브영"},
+{"id":"a3","tm":"18:00","t":"韓式烤肉晚餐","d":"돈조세或연남제비任選（詳見美食）","q":"돈조세 연남동"}]},
+{"id":"d2","ic":"🛍️","t":"Day 2 · 1/13 三 聖水＋건대＋汗蒸幕","it":[
+{"id":"b1","tm":"上午","t":"聖水洞逛街","d":"選物店、咖啡廳，午餐在附近","q":"성수동"},
+{"id":"b2","tm":"下午","t":"건대羅德奧街","d":"約60家品牌折扣店（2022資料）；聖水站→건대入口只要一站","q":"건대 로데오거리"},
+{"id":"b3","tm":"18:00","t":"羊肉串街晚餐","d":"송화양꼬치，10串約1.9萬₩","q":"송화양꼬치 건대"},
+{"id":"b4","tm":"20:30","t":"弘大24小時火爐三溫暖","d":"先在Klook買票，約NT$250","q":"홍대24시불가마사우나","u":"https://www.klook.com/zh-TW/search/result/?query=弘大汗蒸幕"}]},
+{"id":"d3","ic":"🍓","t":"Day 3 · 1/14 四 一日團","it":[
+{"id":"c1","tm":"07:00","t":"草莓＋南怡島一日團","d":"週二／四／日出發；集合點常見弘益大學站，以訂單為準；想看雪可改滑雪團","u":"https://www.klook.com/zh-TW/search/result/?query=首爾草莓南怡島一日遊"},
+{"id":"c2","tm":"全天","t":"午餐自理","d":"團費通常不含餐；帶暖暖包和厚外套"},
+{"id":"c3","tm":"20:00","t":"烤貝晚餐","d":"하와이조개 홍대점","q":"하와이조개 홍대점"}]},
+{"id":"d4","ic":"🧣","t":"Day 4 · 1/15 五 鍾路＋東大門","it":[
+{"id":"e1","tm":"上午","t":"益善洞／鍾路散步","q":"익선동"},
+{"id":"e2","tm":"12:30","t":"貝殼鍋午餐","d":"澤家，兩人份約5.5萬₩，營業10:00–22:00","q":"택이네조개전골 종로점"},
+{"id":"e3","tm":"14:30","t":"廣藏市場小吃","d":"綠豆煎餅、紫菜飯捲","q":"광장시장"},
+{"id":"e4","tm":"16:00","t":"東大門逛街到午夜","d":"白天DDP零售，晚上批發商場；部分店週日一休息","q":"동대문디자인플라자"},
+{"id":"e5","tm":"宵夜","t":"닭한마리（一隻雞鍋）","d":"진옥화할매원조닭한마리，約2.8～3.3萬₩，營業到01:00","q":"진옥화할매원조닭한마리"}]},
+{"id":"d5","ic":"✈️","t":"Day 5 · 1/16 六 回台","it":[
+{"id":"f1","tm":"上午","t":"弘大最後採買","d":"看到Tax Free標示記得即時退稅，帶護照"},
+{"id":"f2","tm":"下午航班","t":"江南站地下街","d":"早班機就跳過","q":"강남역 지하상가"},
+{"id":"f3","tm":"-3小時","t":"抵達仁川機場","q":"인천공항 제1터미널"}]},
+{"id":"g1","ic":"🥓","t":"烤肉（延南洞／合井）","it":[
+{"id":"h1","t":"돈조세","d":"平價首選，薄五花配泡菜豆芽。마포구 동교로 254","q":"돈조세 동교로 254"},
+{"id":"h2","t":"강화통통생고기","d":"厚切五花沾蝦醬，必點蜆仔味噌飯。동교로 90","q":"강화통통생고기"},
+{"id":"h3","t":"연남제비","d":"濟州黑豬頸肉不乾柴。성미산로 186","q":"연남제비"},
+{"id":"h4","t":"양화정","d":"厚切醬烤豬排骨，店員代烤。월드컵로1길 17","q":"양화정 월드컵로1길 17"},
+{"id":"h5","t":"행진","d":"冷凍五花肉，老式聚餐氣氛。월드컵로 45","q":"행진 월드컵로 45"}]},
+{"id":"g2","ic":"🐚","t":"貝殼鍋與海鮮","it":[
+{"id":"i1","t":"澤家貝殼蒸鍋 택이네조개전골","d":"韓國人多；自助吧白飯無限，可加點刀削麵。종로구 삼봉로 95 2F 205호","q":"택이네조개전골 종로점"},
+{"id":"i2","t":"하와이조개 홍대점","d":"兩人套餐約5萬₩（舊評論），拉麵無限。와우산로21길 19-8","q":"하와이조개 홍대점"},
+{"id":"i3","t":"備案：蠶室新川烤貝吃到飽","d":"貝殼天國、貝殼倉庫；出發前確認營業","q":"조개창고 신천점"}]},
+{"id":"g3","ic":"🍢","t":"其他在地味","it":[
+{"id":"j1","t":"경성양육관","d":"건대羊肉串，10串約2.3萬₩，麻婆豆腐也好評","q":"경성양육관 건대"},
+{"id":"j2","t":"廣藏市場","d":"小吃當點心","q":"광장시장"}]},
+{"id":"l1","ic":"🏨","t":"住宿","it":[
+{"id":"k1","t":"住哪","d":"弘大入口站步行5分鐘內；備案合井站","q":"홍대입구역"},
+{"id":"k2","t":"訂房條件","d":"評分8.5+、免費取消、有電梯與暖氣；近3個月評論搜「乾淨」","u":"https://www.booking.com/searchresults.zh-tw.html?ss=弘大入口站&checkin=2027-01-12&checkout=2027-01-16&group_adults=2"},
+{"id":"k3","t":"DW設計公寓","d":"公寓式，小廚房與洗衣設備","q":"DW Design Residence Hongdae"}]},
+{"id":"p1","ic":"✅","t":"預訂清單","it":[
+{"id":"m1","t":"機票","d":"長榮1/12–1/16最低約NT$10,983；記得加購託運","u":"https://www.google.com/travel/flights?q=Flights to ICN from TPE on 2027-01-12 through 2027-01-16"},
+{"id":"m2","t":"一日團","d":"確認1/14有開團，Klook／KKday比價","u":"https://www.kkday.com/zh-tw/product/productlist?keyword=首爾草莓南怡島"},
+{"id":"m3","t":"eSIM","u":"https://www.klook.com/zh-TW/search/result/?query=韓國eSIM"},
+{"id":"m4","t":"T-money","d":"到韓國便利商店買"}]},
+{"id":"bd","ic":"💰","t":"預算（每人，不含機票）","it":[
+{"id":"n1","t":"住宿4晚","d":"約NT$4,000–5,500"},
+{"id":"n2","t":"交通＋eSIM＋汗蒸幕","d":"約NT$2,000"},
+{"id":"n3","t":"餐飲＋一日團","d":"約NT$7,000"},
+{"id":"n4","t":"購物","d":"約NT$12,000–15,000"}]}
+]}</script>
+<script>
+const BASE='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+const $=s=>document.querySelector(s),S=JSON.parse($('#d').textContent);
+let A=null,edit=false,cur=null;
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const sec=id=>S.sec.find(s=>s.id==id),uid=()=>'x'+Math.random().toString(36).slice(2,8);
+const L=(h,t)=>`<a href="${esc(h)}" target="_blank" rel="noopener">${t}</a>`;
+function render(){
+$('#nav').innerHTML=S.sec.map(s=>`<a href="#${s.id}">${s.ic} ${esc(s.t.split('·')[0].trim())}</a>`).join('');
+$('#bar').hidden=!edit;
+$('#app').innerHTML=S.sec.map(s=>`<section id="${s.id}"><h2><span>${s.ic} ${esc(s.t)}</span>${edit?`<button class="g" data-a="ds" data-s="${s.id}">刪區塊</button>`:''}</h2>`+s.it.map(i=>`<div class="c"><div>${i.tm?`<span class="tm">${esc(i.tm)}</span>`:''}<b>${esc(i.t)}</b></div>${i.d?`<p>${esc(i.d)}</p>`:''}${S.tr[i.id]?`<p>🚇 ${esc(S.tr[i.id])}</p>`:''}<div class="lk">${i.q?L('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(i.q),'📍 Google地圖')+L('https://map.naver.com/p/search/'+encodeURIComponent(i.q),'🗺️ Naver')+L('https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent('홍대입구역')+'&destination='+encodeURIComponent(i.q)+'&travelmode=transit','🚌 從弘大怎麼去'):''}${/^https?:/.test(i.u||'')?L(i.u,'🔗 連結'):''}${edit?`<button class="g" data-a="e" data-s="${s.id}" data-i="${i.id}">✎</button><button class="g" data-a="x" data-s="${s.id}" data-i="${i.id}">✕</button>`:''}</div></div>`).join('')+(edit?`<button class="g" data-a="n" data-s="${s.id}">＋ 新增項目</button>`:'')+'</section>').join('');
+$('#ed').textContent=edit?'👀 預覽':'✏️ 編輯';drawMap()}
+function open(s,i){cur={s,i};const it=i?sec(s).it.find(x=>x.id==i):{};['tm','t','d','q','u'].forEach(k=>$('#f_'+k).value=it[k]||'');$('#f_r').value=S.tr[i]||'';$('#f_g').value=(S.geo[i]||[]).join(',');$('#dgt').textContent=s=='new'?'新增區塊（輸入標題）':'編輯項目';$('#dg').showModal()}
+$('#ok').onclick=()=>{const o={};['tm','t','d','q','u'].forEach(k=>o[k]=$('#f_'+k).value.trim());if(!o.t)return;
+if(cur.s=='new')S.sec.push({id:uid(),ic:'✨',t:o.t,it:[]});else{let id=cur.i;if(id)Object.assign(sec(cur.s).it.find(x=>x.id==id),o);else{id=uid();sec(cur.s).it.push({id,...o})}const r=$('#f_r').value.trim(),g=$('#f_g').value.trim();r?S.tr[id]=r:delete S.tr[id];/^-?[\d.]+,\s*-?[\d.]+$/.test(g)?S.geo[id]=g.split(',').map(Number):delete S.geo[id]}
+$('#dg').close();render()};
+$('#no').onclick=()=>$('#dg').close();
+function msg(t){const e=document.createElement('div');e.id='toast';e.textContent=t;document.body.append(e);setTimeout(()=>e.remove(),3000)}
+async function save(){const j=JSON.stringify(S).replace(/</g,'\\u003c');
+const h=BASE.replace(/(<script id="d" type="application\/json">)[\s\S]*?(<\/script>)/,(m,a,b)=>a+j+b);
+try{await A.publish(h)}catch(e){msg('儲存失敗：'+(e.code||e.message))}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b)return;const{a,s,i}=b.dataset;
+if(a=='ed'){edit=!edit;render()}else if(a=='e')open(s,i);else if(a=='n')open(s);else if(a=='ns')open('new');
+else if(a=='x'){sec(s).it=sec(s).it.filter(x=>x.id!=i);render()}
+else if(a=='ds'){S.sec=S.sec.filter(x=>x.id!=s);render()}
+else if(a=='sv')save();else if(a=='ab')location.reload()});
+render();
+function F(id){for(const s of S.sec){const x=s.it.find(i=>i.id==id);if(x)return x}}
+function drawMap(){
+const X=l=>((l-126.895)*3048).toFixed(0),Y=a=>((37.585-a)*4000).toFixed(0),P=p=>X(p[1])+','+Y(p[0]),pl=(a,c,w)=>`<polyline points="${a.map(P).join(' ')}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+const RV=[[37.56,126.895],[37.545,126.915],[37.525,126.935],[37.517,126.96],[37.512,126.99],[37.517,127.015],[37.528,127.04],[37.533,127.06],[37.528,127.085]];
+const L2=[[37.5496,126.914],[37.5572,126.9245],[37.5568,126.9467],[37.5602,126.9637],[37.5657,126.977],[37.5663,126.9916],[37.5654,127.0075],[37.5613,127.0373],[37.5472,127.0473],[37.5404,127.0694],[37.537,127.0857],[37.5133,127.1002],[37.5088,127.0634],[37.4979,127.0276],[37.4934,127.0141],[37.47,126.98],[37.495,126.9],[37.5089,126.8913],[37.5345,126.9025],[37.5496,126.914]];
+const L1=[[37.5657,126.977],[37.5702,126.983],[37.5709,127.0016],[37.5711,127.0113]];
+const ST=[['合井',37.5496,126.914],['弘大入口',37.5572,126.9245],['市廳',37.5657,126.977],['鍾閣',37.5702,126.983],['鍾路5街',37.5709,127.0016],['東大門歷史文化公園',37.5654,127.0075],['聖水',37.5446,127.0559],['건대入口',37.5404,127.0694],['江南',37.4979,127.0276],['新川',37.5115,127.086]];
+let h=pl(RV,'#9fd3ff',14)+`<text x="${X(126.95)}" y="${Y(37.508)}">漢江</text>`+pl(L2,'#2ab34b',3)+pl(L1,'#1f4fb4',3)+pl([[37.5572,126.9245],[37.5575,126.895]],'#5fb3d4',2)+`<text x="4" y="${Y(37.5575)-5}">←AREX 仁川機場</text>`;
+h+=ST.map(s=>`<circle cx="${X(s[2])}" cy="${Y(s[1])}" r="3.5" style="fill:#fff;stroke:#333"/><text x="${+X(s[2])+5}" y="${+Y(s[1])+11}">${s[0]}</text>`).join('');
+h+=Object.entries(S.geo).map(([id,g])=>F(id)?`<g data-p="${id}" style="cursor:pointer"><circle cx="${X(g[1])}" cy="${Y(g[0])}" r="${id=='k1'?9:6}" style="fill:${id=='k1'?'#ffd34d':'#ff6fa8'};stroke:#fff;stroke-width:1.5"/>${id=='k1'?`<text x="${+X(g[1])-5}" y="${+Y(g[0])+3}">⭐</text>`:''}</g>`:'').join('');
+$('#mp').innerHTML=h}
+document.addEventListener('click',e=>{const p=e.target.closest('[data-p]');if(!p)return;const x=F(p.dataset.p);$('#mpi').innerHTML=`<b>${esc(x.t)}</b>${S.tr[x.id]?'<br>🚇 '+esc(S.tr[x.id]):''}${x.q?'<br>'+L('https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent('홍대입구역')+'&destination='+encodeURIComponent(x.q)+'&travelmode=transit','🚌 從弘大怎麼去'):''}`});
+(async()=>{try{A=window.claude&&await claude.use('artifact')}catch(e){}if(A)$('#ed').hidden=false})();
+</script></body></html>
